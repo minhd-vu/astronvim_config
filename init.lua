@@ -56,7 +56,12 @@ local config = {
     local_vim.g.mapleader = " "
     local_vim.opt.whichwrap = vim.opt.whichwrap - { 'b', 's' } -- removing option from list
     local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
-    vim.diagnostic.config({ virtual_text = false })
+    -- vim.diagnostic.config({ virtual_text = false })
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false
+    }
+    )
 
     return local_vim
   end,
