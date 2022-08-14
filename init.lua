@@ -62,6 +62,7 @@ local config = {
       virtual_text = false
     }
     )
+    local_vim.opt.guifont = { "Hack Nerd Font Mono", ":h12" }
 
     return local_vim
   end,
