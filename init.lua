@@ -26,7 +26,8 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  -- colorscheme = "default_theme",
+  colorscheme = "material",
 
   -- Override highlight groups in any theme
   highlights = {
@@ -54,16 +55,16 @@ local config = {
   options = function(local_vim)
     local_vim.opt.relativenumber = true
     local_vim.g.mapleader = " "
-    local_vim.opt.whichwrap = vim.opt.whichwrap - { 'b', 's' } -- removing option from list
+    local_vim.opt.whichwrap = vim.opt.whichwrap - { "b", "s" } -- removing option from list
     local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
     -- vim.diagnostic.config({ virtual_text = false })
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false
-    }
-    )
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+    })
     local_vim.opt.guifont = { "Hack Nerd Font Mono", ":h12" }
-
+    local_vim.g.sonokai_style = "default"
+    local_vim.g.tokyonight_style = "night"
+    local_vim.g.material_style = "darker"
     return local_vim
   end,
 
@@ -210,6 +211,34 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function() require("catppuccin").setup {} end,
+      },
+      {
+        "ellisonleao/gruvbox.nvim",
+        as = "gruvbox",
+        config = function() require("gruvbox").setup {} end,
+      },
+      { "sainnhe/sonokai" },
+      { "folke/tokyonight.nvim" },
+      {
+        "EdenEast/nightfox.nvim",
+        as = "nightfox",
+        config = function()
+          require("nightfox").setup {
+            options = {
+              styles = {
+                comments = "italic",
+                keywords = "bold",
+                types = "italic,bold",
+              },
+            },
+          }
+        end,
+      },
+      { "marko-cerovac/material.nvim" },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
