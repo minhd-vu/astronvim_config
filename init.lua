@@ -13,7 +13,7 @@ local config = {
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
-    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+    -- pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
     auto_reload = false, -- automatically reload and sync packer after a successful update
@@ -57,11 +57,7 @@ local config = {
     local_vim.g.mapleader = " "
     local_vim.opt.whichwrap = vim.opt.whichwrap - { "b", "s" } -- removing option from list
     local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
-    -- vim.diagnostic.config({ virtual_text = false })
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-    })
-    local_vim.opt.guifont = { "Hack Nerd Font Mono", ":h12" }
+    local_vim.opt.guifont = { "Hack Nerd Font", ":h12.4" }
     local_vim.g.sonokai_style = "default"
     local_vim.g.tokyonight_style = "night"
     local_vim.g.material_style = "darker"
@@ -116,7 +112,7 @@ local config = {
 
   -- Diagnostics configuration (for vim.diagnostics.config({...}))
   diagnostics = {
-    virtual_text = true,
+    virtual_text = false,
     underline = true,
   },
 
@@ -239,6 +235,7 @@ local config = {
         end,
       },
       { "marko-cerovac/material.nvim" },
+      { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
