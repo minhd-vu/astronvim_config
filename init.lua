@@ -55,9 +55,10 @@ local config = {
   options = function(local_vim)
     local_vim.opt.relativenumber = true
     local_vim.g.mapleader = " "
+    local_vim.opt.clipboard = ""
     local_vim.opt.whichwrap = vim.opt.whichwrap - { "b", "s" } -- removing option from list
     local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
-    local_vim.opt.guifont = { "Hack Nerd Font", ":h12.4" }
+    local_vim.opt.guifont = { "Hack Nerd Font", ":h12.5" }
     local_vim.g.sonokai_style = "default"
     local_vim.g.tokyonight_style = "night"
     local_vim.g.material_style = "darker"
