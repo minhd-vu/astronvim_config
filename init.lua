@@ -58,9 +58,7 @@ local config = {
     local_vim.opt.clipboard = ""
     local_vim.opt.whichwrap = vim.opt.whichwrap - { "b", "s" } -- removing option from list
     local_vim.opt.shortmess = vim.opt.shortmess + { I = true } -- add to option list
-    local_vim.opt.guifont = { "Hack Nerd Font", ":h12.5" }
-    local_vim.g.sonokai_style = "default"
-    local_vim.g.tokyonight_style = "night"
+    local_vim.opt.guifont = { "Hack Nerd Font", ":h12.4" }
     local_vim.g.material_style = "darker"
     return local_vim
   end,
@@ -208,33 +206,6 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function() require("catppuccin").setup {} end,
-      },
-      {
-        "ellisonleao/gruvbox.nvim",
-        as = "gruvbox",
-        config = function() require("gruvbox").setup {} end,
-      },
-      { "sainnhe/sonokai" },
-      { "folke/tokyonight.nvim" },
-      {
-        "EdenEast/nightfox.nvim",
-        as = "nightfox",
-        config = function()
-          require("nightfox").setup {
-            options = {
-              styles = {
-                comments = "italic",
-                keywords = "bold",
-                types = "italic,bold",
-              },
-            },
-          }
-        end,
-      },
       { "marko-cerovac/material.nvim" },
       { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" },
     },
