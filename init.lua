@@ -207,7 +207,6 @@ local config = {
       --   end,
       -- },
       { "marko-cerovac/material.nvim" },
-      { "akinsho/flutter-tools.nvim", requires = "nvim-lua/plenary.nvim" },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
