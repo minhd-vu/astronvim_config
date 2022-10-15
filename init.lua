@@ -193,10 +193,18 @@ local config = {
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+      -- pounce
+      ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
+      ["S"] = { "<cmd>PounceRepeat<cr>", desc = "Pounce somewhere" },
     },
     t = {
       -- setting a mapping to false will disable it
       -- ["<esc>"] = false,
+    },
+    o = {
+      -- pounce
+      ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
     },
   },
 
@@ -226,6 +234,15 @@ local config = {
       -- },
       { "marko-cerovac/material.nvim" },
       { "declancm/cinnamon.nvim" },
+      {
+        "jinh0/eyeliner.nvim",
+        config = function()
+          require("eyeliner").setup {
+            highlight_on_key = true,
+          }
+        end,
+      },
+      { "rlane/pounce.nvim" },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
