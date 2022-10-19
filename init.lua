@@ -197,7 +197,7 @@ local config = {
 
       -- pounce
       ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
-      ["S"] = { "<cmd>PounceRepeat<cr>", desc = "Pounce somewhere" },
+      ["S"] = { "<cmd>PounceRepeat<cr>", desc = "Repeat last pounce" },
     },
     t = {
       -- setting a mapping to false will disable it
