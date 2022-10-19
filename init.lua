@@ -271,6 +271,10 @@ local config = {
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
     },
+    {
+      "kosayoda/nvim-lightbulb",
+      requires = "antoinemadec/FixCursorHold.nvim",
+    },
   },
 
   -- LuaSnip Options
