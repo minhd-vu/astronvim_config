@@ -271,7 +271,10 @@ local config = {
           }
         end,
       },
-      { "petertriho/nvim-scrollbar", require("scrollbar").setup {} },
+      {
+        "petertriho/nvim-scrollbar",
+        config = function() require("scrollbar").setup {} end,
+      },
       {
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
