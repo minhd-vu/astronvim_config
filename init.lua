@@ -16,8 +16,8 @@ local config = {
     pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
     skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    auto_reload = false, -- automatically reload and sync packer after a successful update
-    auto_quit = false, -- automatically quit the current session after a successful update
+    auto_reload = true, -- automatically reload and sync packer after a successful update
+    auto_quit = true, -- automatically quit the current session after a successful update
     -- remotes = { -- easily add new remotes to track
     --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
     --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
@@ -198,6 +198,15 @@ local config = {
       -- pounce
       ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
       ["S"] = { "<cmd>PounceRepeat<cr>", desc = "Repeat last pounce" },
+
+      -- markdown-preview
+      ["<leader>um"] = { "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle markdown preview" },
+
+      -- projects
+      ["<leader>sp"] = { "<cmd>Telescope projects<cr>", desc = "Search projects" },
+
+      -- cheatsheet
+      ["<leader>sC"] = { "<cmd>Cheatsheet<cr>", desc = "Search cheatsheet" },
     },
     t = {
       -- setting a mapping to false will disable it
@@ -244,6 +253,41 @@ local config = {
         end,
       },
       { "rlane/pounce.nvim" },
+      { "jghauser/mkdir.nvim" },
+      {
+        "sudormrfbin/cheatsheet.nvim",
+        requires = {
+          { "nvim-telescope/telescope.nvim" },
+          { "nvim-lua/popup.nvim" },
+          { "nvim-lua/plenary.nvim" },
+        },
+      },
+      {
+        "sunjon/shade.nvim",
+        config = function()
+          require("shade").setup {
+            overlay_opacity = 75,
+            opacity_step = 1,
+          }
+        end,
+      },
+      { "petertriho/nvim-scrollbar", require("scrollbar").setup {} },
+      {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+      },
+      {
+        "ahmedkhalf/project.nvim",
+        after = "telescope.nvim",
+        config = function()
+          require("project_nvim").setup {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+          }
+          require("telescope").load_extension "projects"
+        end,
+      },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
@@ -270,10 +314,6 @@ local config = {
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
-    },
-    {
-      "kosayoda/nvim-lightbulb",
-      requires = "antoinemadec/FixCursorHold.nvim",
     },
   },
 
