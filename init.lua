@@ -205,7 +205,7 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      ["<leader>bC"] = { "<cmd>:%bd|e#<cr>", desc = "Close all tabs but this one" },
+      ["<leader>bx"] = { "<cmd>:%bd|e#<cr>", desc = "Close all tabs but this one" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
@@ -281,7 +281,7 @@ local config = {
               -- "neogit",
               "nvim-cmp",
               -- "nvim-navic",
-              "nvim-tree",
+              -- "nvim-tree",
               -- "sneak",
               "telescope",
               -- "trouble",
@@ -366,6 +366,9 @@ local config = {
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
     ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
       -- ensure_installed = { "prettier", "stylua" },
+    },
+    ["neo-tree"] = {
+      close_if_last_window = false,
     },
   },
 
