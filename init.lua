@@ -205,7 +205,15 @@ local config = {
       ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      ["<leader>bx"] = { "<cmd>:%bd|e#<cr>", desc = "Close all tabs but this one" },
+      ["<leader>bx"] = {
+        function()
+          local bufferline = require "bufferline"
+          for _, e in ipairs(bufferline.get_elements().elements) do
+            vim.schedule(function() vim.cmd("bd " .. e.id) end)
+          end
+        end,
+        desc = "Close all tabs",
+      },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
 
