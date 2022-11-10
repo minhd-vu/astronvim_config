@@ -319,6 +319,7 @@ local config = {
       },
       {
         "sunjon/shade.nvim",
+        disable = true,
         config = function()
           require("shade").setup {
             overlay_opacity = 75,
