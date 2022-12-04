@@ -229,6 +229,10 @@ local config = {
 
       -- cheatsheet
       ["<leader>sC"] = { "<cmd>Cheatsheet<cr>", desc = "Search cheatsheet" },
+
+      -- vertical movement
+      ["<C-d>"] = { "<C-d>zz", desc = "Move down half a page and center cursor" },
+      ["<C-u>"] = { "<C-u>zz", desc = "Move up half a page and center cursor" },
     },
     t = {
       -- setting a mapping to false will disable it
