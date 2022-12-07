@@ -233,6 +233,9 @@ local config = {
       -- vertical movement
       ["<C-d>"] = { "<C-d>zz", desc = "Move down half a page and center cursor" },
       ["<C-u>"] = { "<C-u>zz", desc = "Move up half a page and center cursor" },
+
+      -- color column
+      ["<leader>uc"] = { "<cmd>set colorcolumn=81<cr>", desc = "Toggle color column" },
     },
     t = {
       -- setting a mapping to false will disable it
