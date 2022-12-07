@@ -235,7 +235,13 @@ local config = {
       ["<C-u>"] = { "<C-u>zz", desc = "Move up half a page and center cursor" },
 
       -- color column
-      ["<leader>uc"] = { "<cmd>set colorcolumn=81<cr>", desc = "Toggle color column" },
+      ["<leader>uc"] = {
+        function()
+          local value = vim.api.nvim_get_option_value("colorcolumn", {})
+          vim.api.nvim_set_option_value("colorcolumn", value == "" and "81" or "", {})
+        end,
+        desc = "Toggle color column",
+      },
     },
     t = {
       -- setting a mapping to false will disable it
