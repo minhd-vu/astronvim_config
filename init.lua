@@ -392,6 +392,11 @@ local config = {
     ["neo-tree"] = {
       close_if_last_window = false,
     },
+    ["cmp"] = function(config)
+      local cmp = require("cmp")
+      config.confirm_opts.behavior = cmp.ConfirmBehavior.Replace
+      return config
+    end,
   },
 
   -- LuaSnip Options
