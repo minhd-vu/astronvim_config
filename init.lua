@@ -395,6 +395,8 @@ local config = {
     ["cmp"] = function(config)
       local cmp = require("cmp")
       config.confirm_opts.behavior = cmp.ConfirmBehavior.Replace
+      config.mapping["<Tab>"] = nil
+      config.mapping["<S-Tab>"] = nil
       return config
     end,
   },
