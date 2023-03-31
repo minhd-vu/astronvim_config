@@ -5,7 +5,6 @@
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
 local config = {
-
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -28,21 +27,11 @@ local config = {
   -- Set colorscheme to use
   colorscheme = "material",
 
-  -- Add highlight groups in any theme
-  highlights = {
-    -- init = { -- this table overrides highlights in all themes
-    --   Normal = { bg = "#000000" },
-    -- }
-    -- duskfox = { -- a table of overrides/changes to the duskfox theme
-    --   Normal = { bg = "#000000" },
-    -- },
-  },
-
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
       -- set to true or false etc.
-      relativenumber = true, -- sets vim.opt.relativenumber
+      relativenumber = false, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
       spell = true, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
@@ -59,6 +48,7 @@ local config = {
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     },
   },
+
   -- If you need more control, you can use the function()...end notation
   -- options = function(local_vim)
   --   local_vim.opt.relativenumber = true
@@ -69,126 +59,10 @@ local config = {
   --   return local_vim
   -- end,
 
-  -- Set dashboard header
-  header = {
-    " █████  ███████ ████████ ██████   ██████",
-    "██   ██ ██         ██    ██   ██ ██    ██",
-    "███████ ███████    ██    ██████  ██    ██",
-    "██   ██      ██    ██    ██   ██ ██    ██",
-    "██   ██ ███████    ██    ██   ██  ██████",
-    " ",
-    "    ███    ██ ██    ██ ██ ███    ███",
-    "    ████   ██ ██    ██ ██ ████  ████",
-    "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-    "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-    "    ██   ████   ████   ██ ██      ██",
-  },
-
-  -- Default theme configuration
-  default_theme = {
-    -- Modify the color palette for the default theme
-    colors = {
-      fg = "#abb2bf",
-      bg = "#1e222a",
-    },
-    highlights = function(hl) -- or a function that returns a new table of colors to set
-      local C = require "default_theme.colors"
-
-      hl.Normal = { fg = C.fg, bg = C.bg }
-
-      -- New approach instead of diagnostic_style
-      hl.DiagnosticError.italic = true
-      hl.DiagnosticHint.italic = true
-      hl.DiagnosticInfo.italic = true
-      hl.DiagnosticWarn.italic = true
-
-      return hl
-    end,
-    -- enable or disable highlighting for extra plugins
-    plugins = {
-      aerial = true,
-      beacon = false,
-      bufferline = true,
-      cmp = true,
-      dashboard = true,
-      highlighturl = true,
-      hop = false,
-      indent_blankline = true,
-      lightspeed = false,
-      ["neo-tree"] = true,
-      notify = true,
-      ["nvim-tree"] = false,
-      ["nvim-web-devicons"] = true,
-      rainbow = true,
-      symbols_outline = false,
-      telescope = true,
-      treesitter = true,
-      vimwiki = false,
-      ["which-key"] = true,
-    },
-  },
-
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
-  },
-
-  -- Extend LSP configuration
-  lsp = {
-    -- enable servers that you already have installed without mason
-    servers = {
-      -- "pyright"
-    },
-    formatting = {
-      -- control auto formatting on save
-      format_on_save = {
-        enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
-        ignore_filetypes = { -- disable format on save for specified filetypes
-          -- "python",
-        },
-      },
-      disabled = { -- disable formatting capabilities for the listed language servers
-        -- "sumneko_lua",
-      },
-      timeout_ms = 1000, -- default format timeout
-      -- filter = function(client) -- fully override the default formatting function
-      --   return true
-      -- end
-    },
-    -- easily add or disable built in mappings added during LSP attaching
-    mappings = {
-      n = {
-        -- ["<leader>lf"] = false -- disable formatting keymap
-      },
-    },
-    -- add to the global LSP on_attach function
-    -- on_attach = function(client, bufnr)
-    -- end,
-
-    -- override the mason server-registration function
-    -- server_registration = function(server, opts)
-    --   require("lspconfig")[server].setup(opts)
-    -- end,
-
-    -- Add overrides for LSP server settings, the keys are the name of the server
-    ["server-settings"] = {
-      -- example for addings schemas to yamlls
-      -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
-      --   settings = {
-      --     yaml = {
-      --       schemas = {
-      --         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-      --         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-      --         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-      --       },
-      --     },
-      --   },
-      -- },
-    },
   },
 
   -- Mapping data with "desc" stored directly by vim.keymap.set().
@@ -200,35 +74,18 @@ local config = {
     -- first key is the mode
     n = {
       -- second key is the lefthand side of the map
-      -- mappings seen under group name "Buffer"
-      ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-      ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-      ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
-      ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      ["<leader>bx"] = {
+      L = {
         function()
-          local bufferline = require "bufferline"
-          for _, e in ipairs(bufferline.get_elements().elements) do
-            vim.schedule(function() vim.cmd("bd " .. e.id) end)
-          end
+          require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
         end,
-        desc = "Close all tabs",
+        desc = "Next buffer"
       },
-      -- quick save
-      -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-
-      -- pounce
-      ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
-      ["S"] = { "<cmd>PounceRepeat<cr>", desc = "Repeat last pounce" },
-
-      -- markdown-preview
-      ["<leader>um"] = { "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle markdown preview" },
-
-      -- projects
-      ["<leader>sp"] = { "<cmd>Telescope projects<cr>", desc = "Search projects" },
-
-      -- cheatsheet
-      ["<leader>sC"] = { "<cmd>Cheatsheet<cr>", desc = "Search cheatsheet" },
+      H = {
+        function()
+          require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+        end,
+        desc = "Previous buffer"
+      },
 
       -- vertical movement
       ["<C-d>"] = { "<C-d>zz", desc = "Move down half a page and center cursor" },
@@ -243,222 +100,74 @@ local config = {
         desc = "Toggle color column",
       },
     },
-    t = {
-      -- setting a mapping to false will disable it
-      -- ["<esc>"] = false,
-      -- ["<esc>"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
-    },
-    o = {
-      -- pounce
-      ["s"] = { "<cmd>Pounce<cr>", desc = "Pounce somewhere" },
-    },
   },
 
   -- Configure plugins
   plugins = {
-    init = {
-      -- You can disable default plugins as follows:
-      -- ["goolord/alpha-nvim"] = { disable = true },
-
-      -- You can also add new plugins here as well:
-      -- Add plugins, the packer syntax without the "use"
-      -- { "andweeb/presence.nvim" },
-      -- {
-      --   "ray-x/lsp_signature.nvim",
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
-
-      -- We also support a key value style plugin definition similar to NvChad:
-      -- ["ray-x/lsp_signature.nvim"] = {
-      --   event = "BufRead",
-      --   config = function()
-      --     require("lsp_signature").setup()
-      --   end,
-      -- },
-      {
-        "marko-cerovac/material.nvim",
-        config = function()
-          require("material").setup {
-            contrast = {
-              terminal = true, -- Enable contrast for the built-in terminal
-              sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-              floating_windows = false, -- Enable contrast for floating windows
-              cursor_line = false, -- Enable darker background for the cursor line
-              non_current_windows = true, -- Enable darker background for non-current windows
-              filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
-            },
-            plugins = { -- Uncomment the plugins that you use to highlight them
-              -- Available plugins:
-              -- "dap",
-              "dashboard",
-              "gitsigns",
-              -- "hop",
-              "indent-blankline",
-              -- "lspsaga",
-              -- "mini",
-              -- "neogit",
-              "nvim-cmp",
-              -- "nvim-navic",
-              -- "nvim-tree",
-              -- "sneak",
-              "telescope",
-              -- "trouble",
-              "which-key",
-            },
-          }
-        end,
-      },
-      { "declancm/cinnamon.nvim" },
-      {
-        "jinh0/eyeliner.nvim",
-        config = function()
-          require("eyeliner").setup {
-            highlight_on_key = true,
-          }
-        end,
-      },
-      { "rlane/pounce.nvim" },
-      { "jghauser/mkdir.nvim" },
-      {
-        "sudormrfbin/cheatsheet.nvim",
-        requires = {
-          { "nvim-telescope/telescope.nvim" },
-          { "nvim-lua/popup.nvim" },
-          { "nvim-lua/plenary.nvim" },
-        },
-      },
-      {
-        "sunjon/shade.nvim",
-        disable = true,
-        config = function()
-          require("shade").setup {
-            overlay_opacity = 75,
-            opacity_step = 1,
-          }
-        end,
-      },
-      {
-        "petertriho/nvim-scrollbar",
-        config = function() require("scrollbar").setup {} end,
-      },
-      {
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-      },
-      {
-        "ahmedkhalf/project.nvim",
-        after = "telescope.nvim",
-        config = function()
-          require("project_nvim").setup {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-            manual_mode = true,
-            silent_chdir = false,
-          }
-          require("telescope").load_extension "projects"
-        end,
+    {
+      "marko-cerovac/material.nvim",
+      config = function()
+        require("material").setup {
+          contrast = {
+            terminal = true, -- Enable contrast for the built-in terminal
+            sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+            floating_windows = false, -- Enable contrast for floating windows
+            cursor_line = false, -- Enable darker background for the cursor line
+            non_current_windows = true, -- Enable darker background for non-current windows
+            filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
+          },
+          plugins = { -- Uncomment the plugins that you use to highlight them
+            -- Available plugins:
+            "dap",
+            "dashboard",
+            "gitsigns",
+            -- "hop",
+            "indent-blankline",
+            -- "lspsaga",
+            -- "mini",
+            "neogit",
+            "nvim-cmp",
+            -- "nvim-navic",
+            "nvim-tree",
+            -- "sneak",
+            "telescope",
+            -- "trouble",
+            "which-key",
+          },
+        }
+      end,
+    },
+    {
+      "jinh0/eyeliner.nvim",
+      config = function()
+        require("eyeliner").setup {
+          highlight_on_key = true,
+        }
+      end,
+      keys = { "f", "F", "t", "T", }
+    },
+    {
+      "rlane/pounce.nvim",
+      keys = {
+        { "s", "<cmd>Pounce<cr>", mode = { "n", "v", "o" }, desc = "Pounce somewhere" },
+        { "S", "<cmd>PounceRepeat<cr>", mode = { "n" }, desc = "Repeat last pounce" },
       },
     },
-    -- All other entries override the require("<key>").setup({...}) call for default plugins
-    ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
-      -- config variable is the default configuration table for the setup function call
-      -- local null_ls = require "null-ls"
-
-      -- Check supported formatters and linters
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-      config.sources = {
-        -- Set a formatter
-        -- null_ls.builtins.formatting.stylua,
-        -- null_ls.builtins.formatting.prettier,
-      }
-      return config -- return final config table
-    end,
-    treesitter = { -- overrides `require("treesitter").setup(...)`
-      -- ensure_installed = { "lua" },
+    {
+      "petertriho/nvim-scrollbar",
+      event = "User AstroFile",
+      config = function() require("scrollbar").setup() end,
     },
-    -- use mason-lspconfig to configure LSP installations
-    ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-      -- ensure_installed = { "sumneko_lua" },
-    },
-    -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
-    ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-      -- ensure_installed = { "prettier", "stylua" },
-    },
-    ["neo-tree"] = {
-      close_if_last_window = false,
-    },
-    ["cmp"] = function(config)
-      local cmp = require("cmp")
-      config.confirm_opts.behavior = cmp.ConfirmBehavior.Replace
-      config.mapping["<Tab>"] = nil
-      config.mapping["<S-Tab>"] = nil
-      return config
-    end,
-  },
-
-  -- LuaSnip Options
-  luasnip = {
-    -- Add paths for including more VS Code style snippets in luasnip
-    vscode_snippet_paths = {},
-    -- Extend filetypes
-    filetype_extend = {
-      -- javascript = { "javascriptreact" },
-    },
-  },
-
-  -- CMP Source Priorities
-  -- modify here the priorities of default cmp sources
-  -- higher value == higher priority
-  -- The value can also be set to a boolean for disabling default sources:
-  -- false == disabled
-  -- true == 1000
-  cmp = {
-    source_priority = {
-      nvim_lsp = 1000,
-      luasnip = 750,
-      buffer = 500,
-      path = 250,
-    },
-  },
-
-  -- Modify which-key registration (Use this with mappings table in the above.)
-  ["which-key"] = {
-    -- Add bindings which show up as group name
-    register = {
-      -- first key is the mode, n == normal mode
-      n = {
-        -- second key is the prefix, <leader> prefixes
-        ["<leader>"] = {
-          -- third key is the key to bring up next level and its displayed
-          -- group name in which-key top level menu
-          ["b"] = { name = "Buffer" },
-        },
+    {
+      -- https://github.com/iamcco/markdown-preview.nvim/issues/552
+      "iamcco/markdown-preview.nvim",
+      ft = "markdown",
+      build = function() vim.fn["mkdp#util#install"]() end,
+      keys = {
+        { "<leader>um", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" }
       },
     },
   },
-
-  -- This function is run last and is a good place to configuring
-  -- augroups/autocommands and custom filetypes also this just pure lua so
-  -- anything that doesn't fit in the normal config locations above can go here
-  polish = function()
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
-  end,
 }
 
 return config
