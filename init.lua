@@ -99,6 +99,9 @@ local config = {
         end,
         desc = "Toggle color column",
       },
+
+      -- harpoon
+      ["<leader>h"] = { false, desc = "🎣 Harpoon", },
     },
   },
 
@@ -165,6 +168,23 @@ local config = {
       build = function() vim.fn["mkdp#util#install"]() end,
       keys = {
         { "<leader>um", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" }
+      },
+    },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      event = "User AstroFile",
+    },
+    {
+      "ThePrimeagen/harpoon",
+      config = function()
+        require("telescope").load_extension("harpoon")
+      end,
+      keys = {
+        { "<leader>ha", "<cmd>:lua require('harpoon.mark').add_file()<cr>", desc = "Add harpoon mark" },
+        { "<leader>hd", "<cmd>:lua require('harpoon.mark').rm_file()<cr>", desc = "Delete harpoon mark" },
+        { "<leader>hh", "<cmd>:Telescope harpoon marks<cr>", desc = "Harpoon menu" },
+        { "<C-h>", "<cmd>:lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous harpoon file" },
+        { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
       },
     },
   },
