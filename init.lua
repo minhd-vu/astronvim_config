@@ -75,16 +75,12 @@ local config = {
     n = {
       -- second key is the lefthand side of the map
       L = {
-        function()
-          require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
-        end,
-        desc = "Next buffer"
+        function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Next buffer",
       },
       H = {
-        function()
-          require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
-        end,
-        desc = "Previous buffer"
+        function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+        desc = "Previous buffer",
       },
 
       -- vertical movement
@@ -101,7 +97,7 @@ local config = {
       },
 
       -- harpoon
-      ["<leader>h"] = { false, desc = "🎣 Harpoon", },
+      ["<leader>h"] = { false, desc = "🎣 Harpoon" },
     },
   },
 
@@ -147,7 +143,7 @@ local config = {
           highlight_on_key = true,
         }
       end,
-      keys = { "f", "F", "t", "T", }
+      keys = { "f", "F", "t", "T" },
     },
     {
       "rlane/pounce.nvim",
@@ -167,7 +163,7 @@ local config = {
       ft = "markdown",
       build = function() vim.fn["mkdp#util#install"]() end,
       keys = {
-        { "<leader>um", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" }
+        { "<leader>um", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
       },
     },
     {
@@ -176,12 +172,11 @@ local config = {
     },
     {
       "ThePrimeagen/harpoon",
-      config = function()
-        require("telescope").load_extension("harpoon")
-      end,
+      config = function() require("telescope").load_extension "harpoon" end,
       keys = {
         { "<leader>ha", "<cmd>:lua require('harpoon.mark').add_file()<cr>", desc = "Add harpoon mark" },
         { "<leader>hd", "<cmd>:lua require('harpoon.mark').rm_file()<cr>", desc = "Delete harpoon mark" },
+        { "<leader>hc", "<cmd>:lua require('harpoon.mark').clear_all()<cr>", desc = "Clear all harpoon marks" },
         { "<leader>hh", "<cmd>:Telescope harpoon marks<cr>", desc = "Harpoon menu" },
         { "<C-h>", "<cmd>:lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous harpoon file" },
         { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
