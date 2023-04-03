@@ -44,7 +44,6 @@ local config = {
       autopairs_enabled = true, -- enable autopairs at start
       diagnostics_enabled = true, -- enable diagnostics at start
       status_diagnostics_enabled = true, -- enable diagnostics in statusline
-      material_style = "darker",
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
     },
   },
@@ -105,6 +104,7 @@ local config = {
   plugins = {
     {
       "marko-cerovac/material.nvim",
+      init = function() vim.g.material_style = "darker" end,
       config = function()
         require("material").setup {
           contrast = {
@@ -181,6 +181,21 @@ local config = {
         { "<C-h>", "<cmd>:lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous harpoon file" },
         { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
       },
+    },
+    { -- override nvim-cmp plugin
+      "hrsh7th/nvim-cmp",
+      -- override the options table that is used in the `require("cmp").setup()` call
+      opts = function(_, opts)
+        -- opts parameter is the default options table
+        -- the function is lazy loaded so cmp is able to be required
+        -- local cmp = require "cmp"
+        -- modify the mapping part of the table
+        opts.mapping["<Tab>"] = nil
+        opts.mapping["<S-Tab>"] = nil
+
+        -- return the new table to be used
+        return opts
+      end,
     },
   },
 }
