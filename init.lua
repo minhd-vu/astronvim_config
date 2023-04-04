@@ -178,8 +178,8 @@ local config = {
         { "<leader>hd", "<cmd>:lua require('harpoon.mark').rm_file()<cr>", desc = "Delete harpoon mark" },
         { "<leader>hc", "<cmd>:lua require('harpoon.mark').clear_all()<cr>", desc = "Clear all harpoon marks" },
         { "<leader>hh", "<cmd>:Telescope harpoon marks<cr>", desc = "Harpoon menu" },
-        { "<C-h>", "<cmd>:lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous harpoon file" },
-        { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
+        -- { "<C-h>", "<cmd>:lua require('harpoon.ui').nav_prev()<cr>", desc = "Previous harpoon file" },
+        -- { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
       },
     },
     { -- override nvim-cmp plugin
