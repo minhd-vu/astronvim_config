@@ -188,8 +188,9 @@ local config = {
       opts = function(_, opts)
         -- opts parameter is the default options table
         -- the function is lazy loaded so cmp is able to be required
-        -- local cmp = require "cmp"
+        local cmp = require "cmp"
         -- modify the mapping part of the table
+        opts.confirm_opts.behavior = cmp.ConfirmBehavior.Insert
         opts.mapping["<Tab>"] = nil
         opts.mapping["<S-Tab>"] = nil
 
@@ -197,6 +198,13 @@ local config = {
         return opts
       end,
     },
+    {
+      "nvim-neo-tree/neo-tree.nvim",
+      opts = function(_, opts)
+        opts.window.mappings["H"] = "prev_source"
+        opts.window.mappings["L"] = "next_source"
+      end,
+    }
   },
 }
 
