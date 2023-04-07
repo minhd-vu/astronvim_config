@@ -204,7 +204,24 @@ local config = {
         opts.window.mappings["H"] = "prev_source"
         opts.window.mappings["L"] = "next_source"
       end,
-    }
+    },
+    {
+      "goolord/alpha-nvim",
+      opts = function(_, opts) -- override the options using lazy.nvim
+        opts.section.header.val = { -- change the header section value
+          " ███▄ ▄███▓ ██▓ ███▄    █  ██░ ██ ▓█████▄  ██▒   █▓ █    ██ ",
+          "▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ ▓██░ ██▒▒██▀ ██▌▓██░   █▒ ██  ▓██▒",
+          "▓██    ▓██░▒██▒▓██  ▀█ ██▒▒██▀▀██░░██   █▌ ▓██  █▒░▓██  ▒██░",
+          "▒██    ▒██ ░██░▓██▒  ▐▌██▒░▓█ ░██ ░▓█▄   ▌  ▒██ █░░▓▓█  ░██░",
+          "▒██▒   ░██▒░██░▒██░   ▓██░░▓█▒░██▓░▒████▓    ▒▀█░  ▒▒█████▓ ",
+          "░ ▒░   ░  ░░▓  ░ ▒░   ▒ ▒  ▒ ░░▒░▒ ▒▒▓  ▒    ░ ▐░  ░▒▓▒ ▒ ▒ ",
+          "░  ░      ░ ▒ ░░ ░░   ░ ▒░ ▒ ░▒░ ░ ░ ▒  ▒    ░ ░░  ░░▒░ ░ ░ ",
+          "░      ░    ▒ ░   ░   ░ ░  ░  ░░ ░ ░ ░  ░      ░░   ░░░ ░ ░ ",
+          "       ░    ░           ░  ░  ░  ░   ░          ░     ░     ",
+          "                                   ░           ░            ",
+        }
+      end,
+    },
   },
 }
 
