@@ -98,6 +98,10 @@ local config = {
       -- harpoon
       ["<leader>h"] = { false, desc = "🎣 Harpoon" },
     },
+    v = {
+      ["<"] = { "<gv", desc = "unindent line" },
+      [">"] = { ">gv", desc = "indent line" },
+    },
   },
 
   -- Configure plugins
