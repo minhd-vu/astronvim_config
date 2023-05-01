@@ -97,6 +97,32 @@ local config = {
 
       -- harpoon
       ["<leader>h"] = { false, desc = "🎣 Harpoon" },
+
+      -- wrap
+      j = { "gj", expr = false, noremap = true },
+      k = { "gk", expr = false, noremap = true },
+      ["<Home>"] = {
+        function()
+          if vim.wo.wrap then
+            return "g<Home>"
+          else
+            return "<Home>"
+          end
+        end,
+        expr = true,
+        noremap = true,
+      },
+      ["<End>"] = {
+        function()
+          if vim.wo.wrap then
+            return "g<End>"
+          else
+            return "<End>"
+          end
+        end,
+        expr = true,
+        noremap = true,
+      },
     },
     v = {
       ["<"] = { "<gv", desc = "unindent line" },
@@ -129,9 +155,11 @@ local config = {
             -- "lspsaga",
             -- "mini",
             "neogit",
+            "neorg",
             "nvim-cmp",
             -- "nvim-navic",
             "nvim-tree",
+            "nvim-web-devicons",
             -- "sneak",
             "telescope",
             -- "trouble",
@@ -237,6 +265,46 @@ local config = {
           "                                   ░           ░            ",
         }
       end,
+    },
+    {
+      "Bekaboo/deadcolumn.nvim",
+      event = "InsertEnter",
+    },
+    {
+      "monaqa/dial.nvim",
+      config = function()
+        local augend = require "dial.augend"
+        require("dial.config").augends:register_group {
+          default = {
+            augend.integer.alias.decimal_int,
+            augend.integer.alias.hex,
+            augend.integer.alias.octal,
+            augend.integer.alias.binary,
+            augend.date.alias["%Y/%m/%d"],
+            augend.date.alias["%Y-%m-%d"],
+            augend.date.alias["%m/%d"],
+            augend.date.alias["%H:%M"],
+            augend.constant.alias.bool,
+            augend.constant.alias.alpha,
+            augend.constant.alias.Alpha,
+            augend.semver.alias.semver,
+          },
+        }
+      end,
+      keys = {
+        {
+          "<C-a>",
+          function() return require("dial.map").inc_normal() end,
+          expr = true,
+          desc = "Increment",
+        },
+        {
+          "<C-x>",
+          function() return require("dial.map").dec_normal() end,
+          expr = true,
+          desc = "Decrement",
+        },
+      },
     },
   },
 }
