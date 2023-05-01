@@ -99,8 +99,6 @@ local config = {
       ["<leader>h"] = { false, desc = "🎣 Harpoon" },
 
       -- wrap
-      j = { "gj", expr = false, noremap = true },
-      k = { "gk", expr = false, noremap = true },
       ["<Home>"] = {
         function()
           if vim.wo.wrap then
