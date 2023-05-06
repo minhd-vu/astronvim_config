@@ -212,13 +212,6 @@ local config = {
         -- { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
       },
     },
-    {
-      "Exafunction/codeium.vim",
-      event = "InsertEnter",
-      config = function()
-        vim.keymap.set("i", "<M-Tab>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
-      end,
-    },
     { -- override nvim-cmp plugin
       "hrsh7th/nvim-cmp",
       -- override the options table that is used in the `require("cmp").setup()` call
