@@ -156,7 +156,7 @@ local config = {
             "neorg",
             "nvim-cmp",
             -- "nvim-navic",
-            "nvim-tree",
+            -- "nvim-tree",
             "nvim-web-devicons",
             -- "sneak",
             "telescope",
@@ -303,7 +303,13 @@ local config = {
     {
       "ahmedkhalf/project.nvim",
       lazy = false,
-      config = function() require("project_nvim").setup {} end,
+      config = function()
+        require("project_nvim").setup {}
+        require("telescope").load_extension "projects"
+      end,
+      keys = {
+        { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find projects" },
+      },
     },
   },
 }
