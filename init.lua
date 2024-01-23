@@ -36,6 +36,7 @@ local config = {
       spell = true, -- sets vim.opt.spell
       signcolumn = "auto", -- sets vim.opt.signcolumn to auto
       wrap = false, -- sets vim.opt.wrap
+      -- cmdheight = 1,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -212,7 +213,8 @@ local config = {
         -- { "<C-l>", "<cmd>:lua require('harpoon.ui').nav_next()<cr>", desc = "Next harpoon file" },
       },
     },
-    { -- override nvim-cmp plugin
+    {
+      -- override nvim-cmp plugin
       "hrsh7th/nvim-cmp",
       -- override the options table that is used in the `require("cmp").setup()` call
       opts = function(_, opts)
@@ -297,7 +299,9 @@ local config = {
       "ahmedkhalf/project.nvim",
       lazy = false,
       config = function()
-        require("project_nvim").setup {}
+        require("project_nvim").setup {
+          manual_mode = true,
+        }
         require("telescope").load_extension "projects"
       end,
       keys = {
