@@ -99,8 +99,8 @@ local config = {
       -- harpoon
       ["<leader>h"] = { false, desc = "🎣 Harpoon" },
 
-      -- sniprun
-      ["<leader>s"] = { false, desc = "SnipRun" },
+      -- markdown
+      ["<leader>m"] = { false, desc = "📝 Markdown" },
 
       -- wrap
       ["<Home>"] = {
@@ -197,7 +197,7 @@ local config = {
       ft = "markdown",
       build = function() vim.fn["mkdp#util#install"]() end,
       keys = {
-        { "<leader>um", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
+        { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown preview" },
       },
     },
     {
@@ -312,19 +312,21 @@ local config = {
       },
     },
     {
-      "michaelb/sniprun",
-      cmd = "SnipRun",
-      branch = "master",
-      build = "sh install.sh",
+      "https://github.com/jubnzv/mdeval.nvim",
       config = function()
-        require("sniprun").setup {
-          -- your options
+        require("mdeval").setup {
+          require_confirmation = false,
+          eval_options = {},
         }
       end,
+      cmd = "MdEval",
       keys = {
-        { "<leader>sr", "<cmd>:redir @* | :SnipRun | redir END<cr>", mode = { "n" }, desc = "SnipRun" },
-        { "<leader>sr", "<cmd>:redir @* | :'<,'>SnipRun | redir END<cr>", mode = { "v" }, desc = "SnipRun" },
-        { "<leader>sc", "<Plug>SnipClose", desc = "SnipClose" },
+        {
+          "<leader>me",
+          "<cmd>lua require 'mdeval'.eval_code_block()<cr>",
+          mode = { "n" },
+          desc = "Evaluate code block",
+        },
       },
     },
   },
