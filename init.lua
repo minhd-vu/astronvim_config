@@ -99,6 +99,9 @@ local config = {
       -- harpoon
       ["<leader>h"] = { false, desc = "🎣 Harpoon" },
 
+      -- sniprun
+      ["<leader>s"] = { false, desc = "SnipRun" },
+
       -- wrap
       ["<Home>"] = {
         function()
@@ -306,6 +309,22 @@ local config = {
       end,
       keys = {
         { "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Find projects" },
+      },
+    },
+    {
+      "michaelb/sniprun",
+      cmd = "SnipRun",
+      branch = "master",
+      build = "sh install.sh",
+      config = function()
+        require("sniprun").setup {
+          -- your options
+        }
+      end,
+      keys = {
+        { "<leader>sr", "<cmd>:redir @* | :SnipRun | redir END<cr>", mode = { "n" }, desc = "SnipRun" },
+        { "<leader>sr", "<cmd>:redir @* | :'<,'>SnipRun | redir END<cr>", mode = { "v" }, desc = "SnipRun" },
+        { "<leader>sc", "<Plug>SnipClose", desc = "SnipClose" },
       },
     },
   },
